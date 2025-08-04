@@ -21,8 +21,6 @@ jobs:
         run: git lfs track *.skops
       - name: Checkout LFS objects
         run: git lfs checkout
-      - name: reset commit
-        run: git filter-branch --force --index-filter "git rm --cached --ignore-unmatch Model/drug_pipeline.skops" --prune-empty --tag-name-filter cat -- --all
       - name: Add Remote
         env:
           HF_TOKEN: ${{ secrets.HF }}
