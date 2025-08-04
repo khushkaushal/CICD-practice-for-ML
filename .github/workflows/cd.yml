@@ -16,4 +16,4 @@ jobs:
       - name: Deployment To Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF }}
-        run: git push https://khushkaushal:$HF_TOKEN@https://huggingface.co/spaces/khushkaushal/ML-practice main
+        run: git push https://khushkaushal:$HF_TOKEN@huggingface.co/spaces/khushkaushal/ML-practice main
