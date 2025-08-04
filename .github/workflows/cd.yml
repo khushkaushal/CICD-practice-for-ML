@@ -15,18 +15,22 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      - name: LFS Install
-        run:
-          git lfs install
-          git config lfs.allowincompletepush true
-      - name: LFS Track
-        run: git lfs track *.skops
-      - name: Checkout LFS objects
-        run: git lfs checkout
       - name: Add Remote
         env:
           HF_TOKEN: ${{ secrets.HF }}
         run: git remote add space https://khushkaushal:$HF_TOKEN@huggingface.co/spaces/khushkaushal/ML-practice
+      - name: LFS Install
+        run:
+          git lfs install
+          git lfs untrack Model/drug_pipeline.skops
+          git rm --cached Model/drug_pipeline.skops || true
+          git lfs prune
+          git add .gitattributes
+          git commit -m "Remove Model/drug_pipeline.skops from LFS" || true
+      - name: LFS Track
+        run: git lfs track *.skops
+      - name: Checkout LFS objects
+        run: git lfs checkout
       - name: Deployment To Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF }}
