@@ -16,7 +16,9 @@ jobs:
           fetch-depth: 0
           lfs: true
       - name: LFS Install
-        run: git lfs install
+        run:
+          git lfs install
+          git config --global lfs.allowincompletepush true
       - name: LFS Track
         run: git lfs track *.skops
       - name: Checkout LFS objects
