@@ -18,7 +18,7 @@ jobs:
       - name: LFS Install
         run:
           git lfs install
-          git config --global lfs.allowincompletepush true
+          git config lfs.allowincompletepush true
       - name: LFS Track
         run: git lfs track *.skops
       - name: Checkout LFS objects
