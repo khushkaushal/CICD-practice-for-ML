@@ -12,8 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      - name: Add Remote
+        env:
+          HF_TOKEN: ${{ secrets.HF }}
+        run: git remote add space https://khushkaushal:$HF_TOKEN@huggingface.co/spaces/khushkaushal/ML-practice
       - name: Deployment To Hugging Face
         env:
           HF_TOKEN: ${{ secrets.HF }}
-        run: git push https://khushkaushal:$HF_TOKEN@huggingface.co/spaces/khushkaushal/ML-practice main
+        run: git push --force https://khushkaushal:$HF_TOKEN@huggingface.co/spaces/khushkaushal/ML-practice main
